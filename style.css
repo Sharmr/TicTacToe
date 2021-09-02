@@ -3,6 +3,7 @@
     display: grid;
     height: 700px;
     width: 700px;
+    position: relative;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     grid-gap: 5px;
@@ -10,11 +11,22 @@
     margin: -8px;
 }
 
+canvas {
+    position: absolute;
+    pointer-events: none;
+    background-color: transparent;
+
+}
+
 .grid__item{
     background-color: white;
     align-content: center;
+    font-size: 200px;
+    text-align: center;
+
 }
 
 .grid__item:hover {
     background-color: thistle;
 }
+
