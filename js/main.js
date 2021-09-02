@@ -1,5 +1,5 @@
 window.onload = function() {
-
+    GameController.startNewGame();
 }
 
 let DisplayController = (function(){
@@ -49,7 +49,7 @@ let GameLogic = (function(){
     const hasGameWon = (board) => {
 
     };
-    const hasGamedrawn = (board) => {};
+    const hasGameDrawn = (board) => {};
     const switchTurn = () => {
         if(turn == 'X') {
             turn = 'O';
@@ -57,12 +57,14 @@ let GameLogic = (function(){
         else {
             turn = 'X';
         }
+        console.log('poop');
     };
 
     //public
     const runEveryTurn = (board) => {
         hasGameWon(board);
         hasGameDrawn(board);
+        switchTurn();
     };
     const whoseTurn = () => {return turn;}
 
@@ -73,20 +75,20 @@ let GameLogic = (function(){
 //
 // Private:
 // Stores an array of what is to be displayed on the board
+// function to add an X on a given square 
+// function to add an O on a given square
 //
 // Public:
 // function to return current state of the board
-// function to add an X on a given square 
-// function to add an O on a given square
 // function to initialize to board
 let GameBoard = (function(){
     //private
     let board = [null, null, null, null, null, null, null, null, null];
-    
-    //public
-    const getBoard = () => board;
     const addX = (index) => board[index] = 'X';
     const addO = (index) => board[index] = 'O';
+
+    //public
+    const getBoard = () => board;
     const initializeBoard = () => {
         board = [null, null, null, null, null, null, null, null, null];
         const cells = document.querySelectorAll('.grid__item');
@@ -95,19 +97,36 @@ let GameBoard = (function(){
                 cell.innerText = GameLogic.whoseTurn();
                 board[cell.getAttribute('data-key')-1] = cell.innerText;
                 console.log(board);
+                GameController.turn();
             });
         });
     }
 
-    return {getBoard, addX, addO, initializeBoard}
+    return {getBoard, initializeBoard}
 })();
 
-const Player = () => {
+const Player = (type) => {
     //private
+    let player_type = type;
 
     //public
-
-    return {}
+    const playerType = () => player_type;
+    return {playerType}
 };
 
-GameBoard.initializeBoard();
+let GameController = (function(){
+    //private
+    const playerX = Player('X');
+    const playerY = Player('Y');
+    //public
+    const startNewGame = () => {
+        GameBoard.initializeBoard();
+    };
+    const turn = () => {
+        GameLogic.runEveryTurn();
+    }
+    return {startNewGame, turn}
+})();
+
+
+
