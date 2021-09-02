@@ -1,0 +1,20 @@
+
+.grid{
+    display: grid;
+    height: 700px;
+    width: 700px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 5px;
+    background-color:black;
+    margin: -8px;
+}
+
+.grid__item{
+    background-color: white;
+    align-content: center;
+}
+
+.grid__item:hover {
+    background-color: thistle;
+}
