@@ -1,6 +1,11 @@
 
+body {
+    display: flex;
+    flex-direction: column;
+}
 .grid{
     display: grid;
+    align-self: center;
     height: 700px;
     width: 700px;
     position: relative;
@@ -15,7 +20,8 @@ canvas {
     position: absolute;
     pointer-events: none;
     background-color: transparent;
-
+    height: 700px;
+    width: 700px;
 }
 
 .grid__item{
@@ -30,3 +36,28 @@ canvas {
     background-color: thistle;
 }
 
+button {
+    align-self: center;
+    height: 50px;
+    width: 300px;
+    display: inline-block;
+    margin: 20px;
+    padding: 0.35em 1.2em;
+    box-sizing: border-box;
+    border-radius: 3px;
+    font-family:'Roboto',sans-serif;
+    font-weight: 300;
+    color: #000000;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+button:hover {
+    background-color: thistle;
+}
+
+#btns {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+}
